@@ -12,6 +12,10 @@ help: ## Print this help message
 build: ## Build the project
 	$(DUNE) build
 
+.PHONY: check-npm-deps
+check-npm-deps: ## Check if the npm dependencies match Opan requirements
+	opam exec opam-check-npm-deps
+
 .PHONY: clean
 clean: ## Clean build artifacts and other generated files
 	$(DUNE) clean
@@ -25,7 +29,7 @@ format: ## Format the codebase with ocamlformat
 	$(DUNE) build @fmt --auto-promote
 
 .PHONY: init
-init: create-switch install ## Configure everything to develop this repository in local, runs `create-switch` and `install`
+init: create-switch install check-npm-deps ## Configure everything to develop this repository in local, runs `create-switch`, `install`, and `check-npm-deps`
 
 .PHONY: install
 install: ## Install development dependencies
