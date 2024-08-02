@@ -33,7 +33,7 @@ init: create-switch install check-npm-deps ## Configure everything to develop th
 
 .PHONY: install
 install: ## Install development dependencies
-	npm install --legacy-peer-deps
+	yarn install --legacy-peer-deps
 	opam update
 	opam install -y . --deps-only --with-test
 	opam exec opam-check-npm-deps
