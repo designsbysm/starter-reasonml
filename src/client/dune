@@ -1,0 +1,8 @@
+(include_subdirs qualified)
+
+(library
+ (name client)
+ (modes melange)
+ (libraries bindings reason-react types)
+ (preprocess
+  (pps melange.ppx reason-react-ppx)))

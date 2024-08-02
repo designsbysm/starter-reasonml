@@ -5,12 +5,19 @@
  (deps
   (alias_rec vite)))
 
+(melange.emit
+ (target client)
+ (alias client)
+ (libraries client)
+ (module_systems
+  (es6 mjs)))
+
 (rule
  (alias vite)
  (targets
-  (dir dist))
+  (dir dist-client))
  (deps
-  (alias_rec ahrefs)
+  (alias_rec client)
   (:index_html ./index.html)
   (:index_css ./index.css)
   (:vite ./vite.config.js))
@@ -19,9 +26,23 @@
  (mode
   (promote (until-clean))))
 
+(rule
+ (alias vite)
+ (targets
+  (dir dist-server))
+ (deps
+  (alias_rec server)
+  (:rollup ./rollup.config.mjs))
+ (action
+  (system "../../node_modules/.bin/rollup --config"))
+ ; (action
+ ;  (system "cp -R ./server ./dist-server"))
+ (mode
+  (promote (until-clean))))
+
 (melange.emit
- (target output)
- (alias ahrefs)
- (libraries app)
+ (target server)
+ (alias server)
+ (libraries server)
  (module_systems
   (es6 mjs)))

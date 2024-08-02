@@ -1,0 +1,8 @@
+(include_subdirs qualified)
+
+(library
+ (name server)
+ (modes melange)
+ (libraries bindings types)
+ (preprocess
+  (pps melange.ppx)))

@@ -1,6 +1,6 @@
 _build/
 _opam/
-dist/
+dist-*/
 build/
 .sl/
 .git/
