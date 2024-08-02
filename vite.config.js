@@ -1,8 +1,9 @@
 import { nodeResolve } from "@rollup/plugin-node-resolve";
 
 export default {
+  root: "./public",
   build: {
-    outDir: "./dist-client",
+    outDir: "../dist-client",
   },
   plugins: [nodeResolve()],
 };

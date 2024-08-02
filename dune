@@ -18,13 +18,20 @@
   (dir dist-client))
  (deps
   (alias_rec client)
-  (:index_html ./index.html)
-  (:index_css ./index.css)
+  (:public
+   (glob_files public/*))
   (:vite ./vite.config.js))
  (action
   (system "../../node_modules/.bin/vite build"))
  (mode
   (promote (until-clean))))
+
+(melange.emit
+ (target server)
+ (alias server)
+ (libraries server)
+ (module_systems
+  (es6 mjs)))
 
 (rule
  (alias vite)
@@ -39,10 +46,3 @@
  ;  (system "cp -R ./server ./dist-server"))
  (mode
   (promote (until-clean))))
-
-(melange.emit
- (target server)
- (alias server)
- (libraries server)
- (module_systems
-  (es6 mjs)))
